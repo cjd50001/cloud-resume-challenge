@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chris J. Dick - Resume</title>
+    <link rel="stylesheet" href="resume_style.css">
+</head>
+<body>
+    <p id="visitor-count">Loading visitor count...</p>
+
+    <div class="container">
+        <aside class="sidebar">
+            <section>
+                <h2>Contact</h2>
+                <p>Melbourne AU</p>
+                <p>0401 764 139</p>
+                <p>chris.j.dick@gmail.com</p>
+                <p><a href="https://www.linkedin.com/in/chrisjdick">linkedin.com/in/chrisjdick</a></p>
+            </section>
+            <section>
+                <h2>Skills</h2>
+                <h3>Infrastructure & Data Centre Operations:</h3>
+                <ul>
+                    <li>VMware vSphere, Hyper-V, Windows Server (2008–2022)</li>
+                    <li>Commvault backup, WatchGuard, Ubiquiti and Cisco networks</li>
+                    <li>Structured cabling, rack management, space/power/cooling</li>
+                    <li>Network config: Ubiquiti, WatchGuard & Cisco</li>
+                    <li>Endpoint protection, patching, policy compliance</li>
+                </ul>
+                <h3>Systems & Platform Management:</h3>
+                <ul>
+                    <li>Azure AD, Microsoft 365, Microsoft Defender</li>
+                    <li>PowerShell, N-Able RMM, documentation</li>
+                    <li>ITIL-aligned incident handling & escalations</li>
+                </ul>
+                <h3>Security & Standards Alignment:</h3>
+                <ul>
+                    <li>Backup integrity, IAM, MFA, ASD Essential 8 familiarity</li>
+                    <li>Standards-based environments</li>
+                </ul>
+                <h3>Collaboration & Delivery:</h3>
+                <ul>
+                    <li>Cross-functional collaboration, stakeholder engagement</li>
+                    <li>Experience supporting infrastructure projects</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Certifications</h2>
+                <ul>
+                    <li>ISC2 SSCP - 2025</li>
+                    <li>ISC2 CC - 2023</li>
+                    <li>Cisco CCNA - 2014</li>
+                    <li>CompTIA Storage+ - 2014</li>
+                    <li>MCSA Server 2012 - 2013</li>
+                    <li>Commvault Simpana 8 Admin - 2010</li>
+                </ul>
+            </section>
+            <section>
+                <h2>References</h2>
+                <ul>
+                    <li>Xavier Urquiza – 0420 584 217</li>
+                    <li>David Oram – 0438 783 467</li>
+                    <li>Dr Ian Wiltshire – 0451 371 499</li>
+                    <li>Patrick Mahoney – 0488 002 833</li>
+                </ul>
+            </section>
+        </aside>
+        <main class="main">
+            <header>
+                <h1>Chris J. Dick</h1>
+                <h2>IT Systems Engineer | Senior Infrastructure Specialist | Security-Driven Technologist</h2>
+                <p>Technically strong and customer-focused IT professional with 12+ years of experience in enterprise infrastructure, support, and systems engineering. Backed by a Master’s in Information Systems Security and ISC2 SSCP certification, I bring hands-on expertise across Azure, Windows Server, M365, and VMware. Seeking to advance within senior infrastructure and systems engineering roles, bringing deep technical capability and a proven record supporting distributed, uptime-critical environments.</p>
+            </header>
+            <section>
+                <h2>Experience</h2>
+                <h3>Systems Engineer — CT Group</h3>
+                <p><strong>Nov 2023 – Present</strong></p>
+                <ul>
+                    <li>Level 3 support, MSP environments, ticket SLAs, HaloPSA, N-Able RMM</li>
+                    <li>Endpoint & EDR: SentinelOne, Microsoft Defender, Avanan</li>
+                    <li>VMware vSphere, Hyper-V, Ubiquiti, WatchGuard, SD-WAN</li>
+                    <li>Technical solution design, documentation, racking/installations</li>
+                </ul>
+                <h3>Career Break — Cyber Security Study</h3>
+                <p><strong>Mar 2023 – Nov 2023</strong></p>
+                <ul>
+                    <li>CTFs: Hack the Box, TryHackMe, PicoCTF</li>
+                    <li>Blue/Red Team, RHCSA, Azure & GCP, pfSense lab</li>
+                </ul>
+                <h3>Owner & Head Coach — Balance to You</h3>
+                <p><strong>Oct 2018 – Apr 2023</strong></p>
+                <ul>
+                    <li>Business ops, kettlebell & powerlifting, SaaS tooling, payment & scheduling systems</li>
+                </ul>
+                <h3>Systems Administrator — RPS Group</h3>
+                <p><strong>Aug 2012 – Sep 2018</strong></p>
+                <ul>
+                    <li>2000+ users, backup & DR (Commvault), Windows, rack & server infrastructure</li>
+                </ul>
+                <h3>IT Officer — RPS Group</h3>
+                <p><strong>Jun 2008 – Aug 2012</strong></p>
+                <h3>IT Technician — RxWorks</h3>
+                <p><strong>Jan 2007 – May 2008</strong></p>
+                <h3>Computer Sales — Harvey Norman</h3>
+                <p><strong>Nov 2005 – Jan 2007</strong></p>
+            </section>
+            <section>
+                <h2>Education</h2>
+                <ul>
+                    <li>Master’s in Info Systems Security — Charles Sturt (GPA 5.5)</li>
+                    <li>Grad Cert Info Systems Security — Charles Sturt (GPA 5.75)</li>
+                    <li>Diploma IT Network Engineering — QLD TAFE</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+<script>
+  async function updateVisitorCount() {
+    try {
+      const response = await fetch("https://cjdvisitorcounterfunc.azurewebsites.net/api/visitor_counter", {
+        method: "POST"
+      });
+
+      const contentType = response.headers.get("content-type");
+      if (!contentType || !contentType.includes("application/json")) {
+        throw new Error("Expected JSON, got " + contentType);
+      }
+
+      const data = await response.json();
+      if (!data || typeof data.count !== "number") {
+        throw new Error("Missing or invalid 'count' in response");
+      }
+
+      document.getElementById("visitor-count").textContent =
+        `This resume has been viewed ${data.count} times.`;
+
+    } catch (error) {
+      console.error("Visitor count error:", error);
+      document.getElementById("visitor-count").textContent =
+        "This resume has been viewed error times.";
+    }
+  }
+
+  updateVisitorCount();
+</script>
+</body>
+</html>

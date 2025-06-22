@@ -1,0 +1,41 @@
+import logging
+import azure.functions as func
+from azure.data.tables import TableServiceClient, TableEntity
+import os
+import json
+
+def main(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Visitor counter function triggered.')
+
+    connection_string = os.environ["AzureWebJobsStorage"]
+    table_service = TableServiceClient.from_connection_string(conn_str=connection_string)
+    table_client = table_service.get_table_client(table_name="visitors")
+
+    partition_key = "resume"
+    row_key = "counter"
+
+    try:
+        entity = table_client.get_entity(partition_key=partition_key, row_key=row_key)
+        count = int(entity["count"])
+    except:
+        count = 0
+
+    if req.method == "POST":
+        count += 1
+        entity = {
+            "PartitionKey": partition_key,
+            "RowKey": row_key,
+            "count": count
+        }
+        table_client.upsert_entity(entity)
+        return func.HttpResponse(
+            json.dumps({"count": count}),
+            mimetype="application/json",
+            status_code=200
+        )
+    else:
+        return func.HttpResponse(
+            json.dumps({"count": count}),
+            mimetype="application/json"
+        )
+
