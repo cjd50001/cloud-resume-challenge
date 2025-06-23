@@ -1,0 +1,29 @@
+name: Deploy Static Website
+
+on:
+  push:
+    paths:
+      - 'HTML/**'
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Upload static files to Azure Blob Storage
+        uses: azure/CLI@v1
+        with:
+          azcliversion: 2.30.0
+          inlineScript: |
+            az storage blob upload-batch \
+              --account-name cjdstorageaccount \
+              --destination \$web \
+              --source HTML \
+              --overwrite \
+              --auth-mode key
+        env:
+          AZURE_STORAGE_KEY: ${{ secrets.CRC_AZURE_BLOB }}
