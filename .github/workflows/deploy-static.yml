@@ -31,6 +31,7 @@ jobs:
             --account-name cjdstorageaccount \
             --destination '$web' \
             --source HTML \
-            --auth-mode key
+            --auth-mode key \
+            --overwrite
         env:
           AZURE_STORAGE_KEY: ${{ secrets.CRC_AZURE_BLOB }}
