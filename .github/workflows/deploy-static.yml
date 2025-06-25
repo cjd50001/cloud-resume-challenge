@@ -1,5 +1,5 @@
 name: Deploy Static Website
-
+#comment for workflow refresh
 on:
   push:
     paths:
