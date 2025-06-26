@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'visitor-counter/**'
+      - '.github/workflows/deploy-function.yml'
     branches:
       - main
 
