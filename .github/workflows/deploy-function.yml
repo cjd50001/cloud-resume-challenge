@@ -28,6 +28,11 @@ jobs:
           pip install -r requirements.txt
           zip -r visitor-counter.zip .
 
+      - name: Run unit tests
+        run: |
+          cd visitor-counter
+            pytest
+
       - name: Deploy to Azure Function App
         uses: azure/functions-action@v1
         with:
