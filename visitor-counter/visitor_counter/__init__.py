@@ -1,7 +1,10 @@
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), '.python_packages/lib/site-packages'))
+
 import logging
 import azure.functions as func
 from azure.data.tables import TableServiceClient
-import os
 import json
 
 def main(req: func.HttpRequest) -> func.HttpResponse:

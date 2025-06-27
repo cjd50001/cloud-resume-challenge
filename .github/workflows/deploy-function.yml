@@ -25,8 +25,8 @@ jobs:
         run: |
           cd visitor-counter
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          zip -r visitor-counter.zip .
+          pip install -r requirements.txt --target=".python_packages/lib/site-packages"
+          zip -r visitor-counter.zip . -x "*.venv/*/"
 
       - name: Install test coverage tools
         run: |
