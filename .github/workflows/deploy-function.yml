@@ -36,11 +36,6 @@ jobs:
       - name: Run unit tests
         run: |
           cd visitor-counter
-          pytest --cov=visitor_counter
-
-      - name: Run unit tests
-        run: |
-          cd visitor-counter
             --cov=visitor_counter --cov-fail-under=80
 
       - name: Upload coverage report
