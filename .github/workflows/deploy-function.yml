@@ -28,10 +28,27 @@ jobs:
           pip install -r requirements.txt
           zip -r visitor-counter.zip .
 
+      - name: Install test coverage tools
+        run: |
+          cd visitor-counter
+          pip install pytest-cov
+
       - name: Run unit tests
         run: |
           cd visitor-counter
-            pytest
+          pytest --cov=visitor_counter
+
+      - name: Run unit tests
+        run: |
+          cd visitor-counter
+            --cov=visitor_counter --cov-fail-under=80
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-html
+          path: visitor-counter/htmlcov
+
 
       - name: Deploy to Azure Function App
         uses: azure/functions-action@v1
