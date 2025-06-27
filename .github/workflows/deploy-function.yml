@@ -36,6 +36,7 @@ jobs:
       - name: Run unit tests
         run: |
           cd visitor-counter
+          export PYTHONPATH=.python_packages/lib/site-packages
           pytest  --cov=visitor_counter --cov-report=html --cov-fail-under=80
 
       - name: Upload coverage report
